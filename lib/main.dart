@@ -125,7 +125,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           centerTitle: true,
           leading: leading,
           elevation: 0.0,
-          title: Text("Hey There Vicky!"),
+          title:
+              Text("Hey There Vicky! Whats up Bro. Hope your are doing good"),
           backgroundColor: Colors.transparent,
           actions: actions,
         ),
