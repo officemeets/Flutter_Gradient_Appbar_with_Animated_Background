@@ -22,7 +22,7 @@ class SignUpPage extends StatefulWidget {
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -45,28 +45,42 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 32.0),
-            ElevatedButton(
-              onPressed: _signUp,
-              child: Text('Sign Up'),
-            ),
-          ],
+      body: AnimatedBackground(
+        behaviour: RandomParticleBehaviour(
+            options: const ParticleOptions(
+                baseColor: Colors.blue, //
+                spawnOpacity: 0.0, //
+                minOpacity: 0.1, //
+                spawnMinSpeed: 10.0, //
+                spawnMaxSpeed: 70.0, //
+                spawnMinRadius: 7.0,
+                spawnMaxRadius: 15.0, //
+                particleCount: 40, //
+                image: Image(image: AssetImage('assets/alien.png')))),
+        vsync: this,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+              ),
+              SizedBox(height: 32.0),
+              ElevatedButton(
+                onPressed: _signUp,
+                child: Text('Sign Up'),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -125,7 +139,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           centerTitle: true,
           leading: leading,
           elevation: 0.0,
-          title: Text("Hey There Vicky! Whats up Bro"),
+          title: Text("Demo Sign up with Animation"),
           backgroundColor: Colors.transparent,
           actions: actions,
         ),
